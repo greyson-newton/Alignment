@@ -128,7 +128,7 @@ AlignmentMonitorSegmentDifferences::AlignmentMonitorSegmentDifferences(const edm
 void AlignmentMonitorSegmentDifferences::book() 
 {
   char name[222], pos[222], neg[222];
-
+  char buffer[230];
   double max_curv = 1./m_minTrackPt;
 
   if (m_doDT) for (int wheel = -2;  wheel <= +2;  wheel++) 
@@ -137,77 +137,77 @@ void AlignmentMonitorSegmentDifferences::book()
     for (int sector = 1;  sector <= 12;  sector++) 
     {
       char wheel_sector[50];
-      sprintf(wheel_sector,"%s_%02d", wheel_label[wheel+2], sector );
+      snprintf(wheel_sector, sizeof(buffer), "%s_%02d", wheel_label[wheel+2], sector );
 
       int nb = 100;
       double wnd = 25.;
 
       sprintf(name, "dt13_resid_%s_12", wheel_sector);
-      sprintf(pos,"pos%s", name);
-      sprintf(neg,"neg%s", name);
+      snprintf(pos,sizeof(buffer),"pos%s",name);
+      snprintf(neg,sizeof(buffer),"neg%s",name);
       m_dt13_resid[wheel+2][sector-1][0] = bookProfile("/iterN/", name, name, 20, -max_curv, max_curv, 1, -100., 100., " ");
       m_posdt13_resid[wheel+2][sector-1][0] = book1D("/iterN/", pos, pos, nb, -wnd, wnd);
       m_negdt13_resid[wheel+2][sector-1][0] = book1D("/iterN/", neg, neg, nb, -wnd, wnd);
       
       sprintf(name, "dt13_resid_%s_23", wheel_sector);
-      sprintf(pos,"pos%s", name);
-      sprintf(neg,"neg%s", name);
+      snprintf(pos,sizeof(buffer),"pos%s",name);
+      snprintf(neg,sizeof(buffer),"neg%s",name);
       m_dt13_resid[wheel+2][sector-1][1] = bookProfile("/iterN/", name, name, 20, -max_curv, max_curv, 1, -100., 100., " ");
       m_posdt13_resid[wheel+2][sector-1][1] = book1D("/iterN/", pos, pos, nb, -wnd, wnd);
       m_negdt13_resid[wheel+2][sector-1][1] = book1D("/iterN/", neg, neg, nb, -wnd, wnd);
       
       sprintf(name, "dt13_resid_%s_34", wheel_sector);
-      sprintf(pos,"pos%s", name);
-      sprintf(neg,"neg%s", name);
+      snprintf(pos,sizeof(buffer),"pos%s",name);
+      snprintf(neg,sizeof(buffer),"neg%s",name);
       m_dt13_resid[wheel+2][sector-1][2] = bookProfile("/iterN/", name, name, 20, -max_curv, max_curv, 1, -100., 100., " ");
       m_posdt13_resid[wheel+2][sector-1][2] = book1D("/iterN/", pos, pos, nb, -wnd, wnd);
       m_negdt13_resid[wheel+2][sector-1][2] = book1D("/iterN/", neg, neg, nb, -wnd, wnd);
 
       sprintf(name, "dt2_resid_%s_12", wheel_sector);
-      sprintf(pos,"pos%s", name);
-      sprintf(neg,"neg%s", name);
+      snprintf(pos,sizeof(buffer),"pos%s",name);
+      snprintf(neg,sizeof(buffer),"neg%s",name);
       m_dt2_resid[wheel+2][sector-1][0] = bookProfile("/iterN/", name, name, 20, -max_curv, max_curv, 1, -200., 200., " ");
       m_posdt2_resid[wheel+2][sector-1][0] = book1D("/iterN/", pos, pos, nb, -wnd, wnd);
       m_negdt2_resid[wheel+2][sector-1][0] = book1D("/iterN/", neg, neg, nb, -wnd, wnd);
       
       sprintf(name, "dt2_resid_%s_23", wheel_sector);
-      sprintf(pos,"pos%s", name);
-      sprintf(neg,"neg%s", name);
+      snprintf(pos,sizeof(buffer),"pos%s",name);
+      snprintf(neg,sizeof(buffer),"neg%s",name);
       m_dt2_resid[wheel+2][sector-1][1] = bookProfile("/iterN/", name, name, 20, -max_curv, max_curv, 1, -200., 200., " ");
       m_posdt2_resid[wheel+2][sector-1][1] = book1D("/iterN/", pos, pos, nb, -wnd, wnd);
       m_negdt2_resid[wheel+2][sector-1][1] = book1D("/iterN/", neg, neg, nb, -wnd, wnd);
 
       sprintf(name, "dt13_slope_%s_12", wheel_sector);
-      sprintf(pos,"pos%s", name);
-      sprintf(neg,"neg%s", name);
+      snprintf(pos,sizeof(buffer),"pos%s",name);
+      snprintf(neg,sizeof(buffer),"neg%s",name);
       m_dt13_slope[wheel+2][sector-1][0] = bookProfile("/iterN/", name, name, 20, -max_curv, max_curv, 1, -100., 100., " ");
       m_posdt13_slope[wheel+2][sector-1][0] = book1D("/iterN/", pos, pos, nb, -wnd, wnd);
       m_negdt13_slope[wheel+2][sector-1][0] = book1D("/iterN/", neg, neg, nb, -wnd, wnd);
 
       sprintf(name, "dt13_slope_%s_23", wheel_sector);
-      sprintf(pos,"pos%s", name);
-      sprintf(neg,"neg%s", name);
+      snprintf(pos,sizeof(buffer),"pos%s",name);
+      snprintf(neg,sizeof(buffer),"neg%s",name);
       m_dt13_slope[wheel+2][sector-1][1] = bookProfile("/iterN/", name, name, 20, -max_curv, max_curv, 1, -100., 100., " ");
       m_posdt13_slope[wheel+2][sector-1][1] = book1D("/iterN/", pos, pos, nb, -wnd, wnd);
       m_negdt13_slope[wheel+2][sector-1][1] = book1D("/iterN/", neg, neg, nb, -wnd, wnd);
       
       sprintf(name, "dt13_slope_%s_34", wheel_sector);
-      sprintf(pos,"pos%s", name);
-      sprintf(neg,"neg%s", name);
+      snprintf(pos,sizeof(buffer),"pos%s",name);
+      snprintf(neg,sizeof(buffer),"neg%s",name);
       m_dt13_slope[wheel+2][sector-1][2] = bookProfile("/iterN/", name, name, 20, -max_curv, max_curv, 1, -100., 100., " ");
       m_posdt13_slope[wheel+2][sector-1][2] = book1D("/iterN/", pos, pos, nb, -wnd, wnd);
       m_negdt13_slope[wheel+2][sector-1][2] = book1D("/iterN/", neg, neg, nb, -wnd, wnd);
       
       sprintf(name, "dt2_slope_%s_12", wheel_sector);
-      sprintf(pos,"pos%s", name);
-      sprintf(neg,"neg%s", name);
+      snprintf(pos,sizeof(buffer),"pos%s",name);
+      snprintf(neg,sizeof(buffer),"neg%s",name);
       m_dt2_slope[wheel+2][sector-1][0] = bookProfile("/iterN/", name, name, 20, -max_curv, max_curv, 1, -1000., 1000., " ");
       m_posdt2_slope[wheel+2][sector-1][0] = book1D("/iterN/", pos, pos, nb, -100., 100.);
       m_negdt2_slope[wheel+2][sector-1][0] = book1D("/iterN/", neg, neg, nb, -100., 100.);
       
       sprintf(name, "dt2_slope_%s_23", wheel_sector);
-      sprintf(pos,"pos%s", name);
-      sprintf(neg,"neg%s", name);
+      snprintf(pos,sizeof(buffer),"pos%s",name);
+      snprintf(neg,sizeof(buffer),"neg%s",name);
       m_dt2_slope[wheel+2][sector-1][1] = bookProfile("/iterN/", name, name, 20, -max_curv, max_curv, 1, -1000., 1000., " ");
       m_posdt2_slope[wheel+2][sector-1][1] = book1D("/iterN/", pos, pos, nb, -100., 100.);
       m_negdt2_slope[wheel+2][sector-1][1] = book1D("/iterN/", neg, neg, nb, -100., 100.);
@@ -229,29 +229,29 @@ void AlignmentMonitorSegmentDifferences::book()
       double wnd = 60.;
 
       sprintf(name, "cscouter_resid_%s_12",ec_chamber);
-      sprintf(pos,"pos%s", name);
-      sprintf(neg,"neg%s", name);
+      snprintf(pos,sizeof(buffer),"pos%s",name);
+      snprintf(neg,sizeof(buffer),"neg%s",name);
       m_cscouter_resid[endcap-1][chamber-1][0] = bookProfile("/iterN/", name, name, 20, -max_curv, max_curv, 1, -100., 100., " ");
       m_poscscouter_resid[endcap-1][chamber-1][0] = book1D("/iterN/", pos, pos, nb, -wnd, wnd);
       m_negcscouter_resid[endcap-1][chamber-1][0] = book1D("/iterN/", neg, neg, nb, -wnd, wnd);
       
       sprintf(name, "cscouter_resid_%s_23",ec_chamber);
-      sprintf(pos,"pos%s", name);
-      sprintf(neg,"neg%s", name);
+      snprintf(pos,sizeof(buffer),"pos%s",name);
+      snprintf(neg,sizeof(buffer),"neg%s",name);
       m_cscouter_resid[endcap-1][chamber-1][1] = bookProfile("/iterN/", name, name, 20, -max_curv, max_curv, 1, -100., 100., " ");
       m_poscscouter_resid[endcap-1][chamber-1][1] = book1D("/iterN/", pos, pos, nb, -wnd, wnd);
       m_negcscouter_resid[endcap-1][chamber-1][1] = book1D("/iterN/", neg, neg, nb, -wnd, wnd);
       
       sprintf(name, "cscouter_slope_%s_12",ec_chamber);
-      sprintf(pos,"pos%s", name);
-      sprintf(neg,"neg%s", name);
+      snprintf(pos,sizeof(buffer),"pos%s",name);
+      snprintf(neg,sizeof(buffer),"neg%s",name);
       m_cscouter_slope[endcap-1][chamber-1][0] = bookProfile("/iterN/", name, name, 20, -max_curv, max_curv, 1, -100., 100., " ");
       m_poscscouter_slope[endcap-1][chamber-1][0] = book1D("/iterN/", pos, pos, nb, -wnd, wnd);
       m_negcscouter_slope[endcap-1][chamber-1][0] = book1D("/iterN/", neg, neg, nb, -wnd, wnd);
       
       sprintf(name, "cscouter_slope_%s_23",ec_chamber);
-      sprintf(pos,"pos%s", name);
-      sprintf(neg,"neg%s", name);
+      snprintf(pos,sizeof(buffer),"pos%s",name);
+      snprintf(neg,sizeof(buffer),"neg%s",name);
       m_cscouter_slope[endcap-1][chamber-1][1] = bookProfile("/iterN/", name, name, 20, -max_curv, max_curv, 1, -100., 100., " ");
       m_poscscouter_slope[endcap-1][chamber-1][1] = book1D("/iterN/", pos, pos, nb, -wnd, wnd);
       m_negcscouter_slope[endcap-1][chamber-1][1] = book1D("/iterN/", neg, neg, nb, -wnd, wnd);
@@ -266,43 +266,43 @@ void AlignmentMonitorSegmentDifferences::book()
       double wnd = 40.;
       
       sprintf(name, "cscinner_resid_%s_12",ec_chamber);
-      sprintf(pos,"pos%s", name);
-      sprintf(neg,"neg%s", name);
+      snprintf(pos,sizeof(buffer),"pos%s",name);
+      snprintf(neg,sizeof(buffer),"neg%s",name);
       m_cscinner_resid[endcap-1][chamber-1][0] = bookProfile("/iterN/", name, name, 20, -max_curv, max_curv, 1, -100., 100., " ");
       m_poscscinner_resid[endcap-1][chamber-1][0] = book1D("/iterN/", pos, pos, nb, -wnd, wnd);
       m_negcscinner_resid[endcap-1][chamber-1][0] = book1D("/iterN/", neg, neg, nb, -wnd, wnd);
       
       sprintf(name, "cscinner_resid_%s_23",ec_chamber);
-      sprintf(pos,"pos%s", name);
-      sprintf(neg,"neg%s", name);
+      snprintf(pos,sizeof(buffer),"pos%s",name);
+      snprintf(neg,sizeof(buffer),"neg%s",name);
       m_cscinner_resid[endcap-1][chamber-1][1] = bookProfile("/iterN/", name, name, 20, -max_curv, max_curv, 1, -100., 100., " ");
       m_poscscinner_resid[endcap-1][chamber-1][1] = book1D("/iterN/", pos, pos, nb, -wnd, wnd);
       m_negcscinner_resid[endcap-1][chamber-1][1] = book1D("/iterN/", neg, neg, nb, -wnd, wnd);
       
       sprintf(name, "cscinner_resid_%s_34",ec_chamber);
-      sprintf(pos,"pos%s", name);
-      sprintf(neg,"neg%s", name);
+      snprintf(pos,sizeof(buffer),"pos%s",name);
+      snprintf(neg,sizeof(buffer),"neg%s",name);
       m_cscinner_resid[endcap-1][chamber-1][2] = bookProfile("/iterN/", name, name, 20, -max_curv, max_curv, 1, -100., 100., " ");
       m_poscscinner_resid[endcap-1][chamber-1][2] = book1D("/iterN/", pos, pos, nb, -wnd, wnd);
       m_negcscinner_resid[endcap-1][chamber-1][2] = book1D("/iterN/", neg, neg, nb, -wnd, wnd);
 
       sprintf(name, "cscinner_slope_%s_12",ec_chamber);
-      sprintf(pos,"pos%s", name);
-      sprintf(neg,"neg%s", name);
+      snprintf(pos,sizeof(buffer),"pos%s",name);
+      snprintf(neg,sizeof(buffer),"neg%s",name);
       m_cscinner_slope[endcap-1][chamber-1][0] = bookProfile("/iterN/", name, name, 20, -max_curv, max_curv, 1, -100., 100., " ");
       m_poscscinner_slope[endcap-1][chamber-1][0] = book1D("/iterN/", pos, pos, nb, -wnd, wnd);
       m_negcscinner_slope[endcap-1][chamber-1][0] = book1D("/iterN/", neg, neg, nb, -wnd, wnd);
 
       sprintf(name, "cscinner_slope_%s_23",ec_chamber);
-      sprintf(pos,"pos%s", name);
-      sprintf(neg,"neg%s", name);
+      snprintf(pos,sizeof(buffer),"pos%s",name);
+      snprintf(neg,sizeof(buffer),"neg%s",name);
       m_cscinner_slope[endcap-1][chamber-1][1] = bookProfile("/iterN/", name, name, 20, -max_curv, max_curv, 1, -100., 100., " ");
       m_poscscinner_slope[endcap-1][chamber-1][1] = book1D("/iterN/", pos, pos, nb, -wnd, wnd);
       m_negcscinner_slope[endcap-1][chamber-1][1] = book1D("/iterN/", neg, neg, nb, -wnd, wnd);
 
       sprintf(name, "cscinner_slope_%s_34",ec_chamber);
-      sprintf(pos,"pos%s", name);
-      sprintf(neg,"neg%s", name);
+      snprintf(pos,sizeof(buffer),"pos%s",name);
+      snprintf(neg,sizeof(buffer),"neg%s",name);
       m_cscinner_slope[endcap-1][chamber-1][2] = bookProfile("/iterN/", name, name, 20, -max_curv, max_curv, 1, -100., 100., " ");
       m_poscscinner_slope[endcap-1][chamber-1][2] = book1D("/iterN/", pos, pos, nb, -wnd, wnd);
       m_negcscinner_slope[endcap-1][chamber-1][2] = book1D("/iterN/", neg, neg, nb, -wnd, wnd);
